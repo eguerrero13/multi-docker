@@ -20,3 +20,15 @@ after_success:
   - docker push eguerrero/multi-nginx
   - docker push eguerrero/multi-server
   - docker push eguerrero/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  region: us-east-1
+  app: multi-docker-2
+  env: MultiDocker2-env
+  bucket_name: elasticbeanstalk-us-east-1-262731585638
+  bucket_path: docker-multi
+  on:
+    branch: master
